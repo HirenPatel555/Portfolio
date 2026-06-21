@@ -30,21 +30,60 @@ export default function Contact() {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
-    
-    // Simulate API request call
-    setTimeout(() => {
+    setIsSuccess(false);
+    setErrors({});
+
+    const accessKey = (import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "").replace(/['"]/g, "").trim();
+
+    if (!accessKey) {
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setErrors({
+          form: "Contact form email sending is not fully configured yet. Please configure the Web3Forms access key in the .env file."
+        });
+      }, 800);
+      return;
+    }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Contact Form: Message from ${formData.name}`
+        })
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setIsSuccess(true);
+        setFormData({ name: '', email: '', message: '' });
+        // Auto close success alert after 5 seconds
+        setTimeout(() => setIsSuccess(false), 5000);
+      } else {
+        setErrors({
+          form: result.message || "Failed to send message. Please try again."
+        });
+      }
+    } catch (err) {
+      setErrors({
+        form: "A connection error occurred. Please check your internet connection and try again."
+      });
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(true);
-      setFormData({ name: '', email: '', message: '' });
-      
-      // Auto close success alert after 5 seconds
-      setTimeout(() => setIsSuccess(false), 5000);
-    }, 1500);
+    }
   };
 
   const handleChange = (e) => {
@@ -138,6 +177,21 @@ export default function Contact() {
                   >
                     <CheckCircle className="w-5 h-5 flex-shrink-0" />
                     <span>Thank you! Your message has been sent successfully.</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Error Notification Alert */}
+              <AnimatePresence>
+                {errors.form && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="flex items-center space-x-3 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm mb-4"
+                  >
+                    <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                    <span>{errors.form}</span>
                   </motion.div>
                 )}
               </AnimatePresence>
