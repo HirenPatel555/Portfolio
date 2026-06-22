@@ -3,6 +3,14 @@ import { Calendar, Briefcase, ChevronRight } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 export default function Experience() {
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   return (
     <section id="experience" className="py-24 bg-bg-dark relative overflow-hidden">
       {/* Background Glow */}
@@ -34,12 +42,17 @@ export default function Experience() {
               {/* Timeline marker */}
               <div className="absolute top-1.5 -left-[7px] w-3 h-3 rounded-full bg-bg-black border-2 border-accent-purple group-hover:bg-accent-purple group-hover:scale-125 transition-all duration-300 shadow-md shadow-accent-purple/30" />
 
-              <div className="glass-panel p-6 md:p-8 rounded-2xl border border-white/5 bg-bg-black/40 hover:bg-bg-black/60 transition-all duration-300 card-glow-hover">
-                {/* Meta details */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
-                  <div>
-                    <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-accent-purple transition-colors duration-200">
-                      {exp.position}
+              <div 
+                onMouseMove={handleMouseMove}
+                className="glass-panel spotlight-card p-6 md:p-8 rounded-2xl border border-white/5 bg-bg-black/40 transition-all duration-300"
+              >
+                <div className="spotlight-card-bg" />
+                <div className="relative z-10">
+                  {/* Meta details */}
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                    <div>
+                      <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-accent-purple transition-colors duration-200">
+                        {exp.position}
                     </h3>
                     <div className="flex items-center space-x-2 text-sm text-text-gray mt-1">
                       <Briefcase className="w-4 h-4 text-accent-blue" />
@@ -73,6 +86,7 @@ export default function Experience() {
                       {tech}
                     </span>
                   ))}
+                  </div>
                 </div>
               </div>
             </motion.div>

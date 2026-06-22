@@ -9,12 +9,13 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import WhyWorkWithMe from './components/WhyWorkWithMe';
 import Contact from './components/Contact';
-import NotFound from './components/NotFound';
+import ThankYou from './components/ThankYou';
+import FloatingBackground from './components/FloatingBackground';
 import { portfolioData } from './data/portfolioData';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [is404, setIs404] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   // Monitor Scroll Progress Indicator
@@ -29,22 +30,14 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Monitor URL Hash changes for showing the 404 page
-  useEffect(() => {
-    const checkHash = () => {
-      if (window.location.hash === '#404') {
-        setIs404(true);
-      } else {
-        setIs404(false);
-      }
-    };
-    
-    // Check initial load hash
-    checkHash();
-
-    window.addEventListener('hashchange', checkHash);
-    return () => window.removeEventListener('hashchange', checkHash);
-  }, []);
+  const handleFormSubmitSuccess = () => {
+    setIsSubmitted(true);
+    setTimeout(() => {
+      window.location.hash = '#home';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setIsSubmitted(false);
+    }, 3500);
+  };
 
   // Simulate console startup screen loader
   useEffect(() => {
@@ -88,25 +81,18 @@ export default function App() {
     );
   }
 
-  // 404 Error Page Layout
-  if (is404) {
-    return (
-      <>
-        <CustomCursor />
-        <NotFound
-          onReturn={() => {
-            window.location.hash = '#home';
-            setIs404(false);
-          }}
-        />
-      </>
-    );
+  // Thank You Page Layout on successful submission
+  if (isSubmitted) {
+    return <ThankYou />;
   }
 
   return (
     <div className="relative min-h-screen bg-bg-black text-white selection:bg-accent-purple/35 selection:text-white">
       {/* Dynamic Cursor Aura effect */}
       <CustomCursor />
+
+      {/* Scattered background floating developer entities */}
+      <FloatingBackground />
 
       {/* Global Scroll Progress Indicator */}
       <div
@@ -125,7 +111,7 @@ export default function App() {
         <Projects />
         <Experience />
         <WhyWorkWithMe />
-        <Contact />
+        <Contact onSuccess={handleFormSubmitSuccess} />
       </main>
 
       {/* Developer Footer */}
@@ -135,9 +121,6 @@ export default function App() {
           <div className="flex items-center space-x-6">
             <a href="#home" className="hover:text-white transition-colors">Home</a>
             <a href="#about" className="hover:text-white transition-colors">About</a>
-            <a href="#404" className="text-red-400/80 hover:text-red-400 transition-colors flex items-center space-x-1">
-              <span>View 404 Page</span>
-            </a>
           </div>
         </div>
       </footer>

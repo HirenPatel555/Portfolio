@@ -35,7 +35,7 @@ export default function CustomCursor() {
     <>
       {/* Outer Spring Glow Aura */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50 mix-blend-screen opacity-70 border border-purple-500 bg-purple-500/10 blur-[1px]"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50 mix-blend-screen opacity-80 border border-[#00F2FE] bg-[#00F2FE]/5 shadow-[0_0_8px_rgba(0,242,254,0.3)] blur-[0.5px]"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
@@ -43,7 +43,7 @@ export default function CustomCursor() {
       />
       {/* Dynamic Cursor Light Aura (Larger, softer background glow) */}
       <motion.div
-        className="fixed top-0 left-0 w-96 h-96 -translate-x-[180px] -translate-y-[180px] rounded-full pointer-events-none z-30 mix-blend-screen opacity-15 bg-radial from-purple-500 via-blue-500/30 to-transparent blur-3xl"
+        className="fixed top-0 left-0 w-[400px] h-[400px] -translate-x-[184px] -translate-y-[184px] rounded-full pointer-events-none z-30 mix-blend-screen opacity-20 cursor-glow-soft bg-[radial-gradient(circle,rgba(0,242,254,0.12)_0%,rgba(6,182,212,0.03)_50%,transparent_70%)]"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,

@@ -9,6 +9,14 @@ function FeatureIcon({ index, className = "w-6 h-6" }) {
 }
 
 export default function WhyWorkWithMe() {
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -52,20 +60,24 @@ export default function WhyWorkWithMe() {
               key={feature.title}
               variants={itemVariants}
               whileHover={{ y: -6, scale: 1.01 }}
-              className="glass-panel p-8 rounded-2xl border border-white/5 bg-bg-black/50 hover:bg-bg-black transition-all duration-300 card-glow-hover flex flex-col items-center text-center md:items-start md:text-left"
+              onMouseMove={handleMouseMove}
+              className="glass-panel spotlight-card p-8 rounded-2xl border border-white/5 bg-bg-black/50 hover:bg-bg-black transition-all duration-300 flex flex-col items-center text-center md:items-start md:text-left group"
             >
-              {/* Icon Container */}
-              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/5 mb-6 group-hover:scale-110 transition-transform duration-300">
-                <FeatureIcon index={idx} className="w-6 h-6" />
-              </div>
+              <div className="spotlight-card-bg" />
+              <div className="relative z-10 flex flex-col items-center text-center md:items-start md:text-left w-full h-full">
+                {/* Icon Container */}
+                <div className="p-3.5 rounded-2xl bg-white/5 border border-white/5 mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <FeatureIcon index={idx} className="w-6 h-6" />
+                </div>
 
-              <h3 className="text-xl font-bold text-white mb-3">
-                {feature.title}
-              </h3>
-              
-              <p className="text-text-gray text-sm md:text-base leading-relaxed">
-                {feature.description}
-              </p>
+                <h3 className="text-xl font-bold text-white mb-3">
+                  {feature.title}
+                </h3>
+                
+                <p className="text-text-gray text-sm md:text-base leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
             </motion.div>
           ))}
         </motion.div>

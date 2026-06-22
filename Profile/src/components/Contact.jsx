@@ -1,14 +1,22 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Mail, CheckCircle, AlertCircle } from 'lucide-react';
-import { GithubIcon as Github, LinkedinIcon as Linkedin } from './BrandIcons';
+import { GithubIcon as Github, LinkedinIcon as Linkedin, InstagramIcon as Instagram, TwitterIcon as Twitter } from './BrandIcons';
 import { portfolioData } from '../data/portfolioData';
 
-export default function Contact() {
+export default function Contact({ onSuccess }) {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
 
   const validate = () => {
     const tempErrors = {};
@@ -62,7 +70,8 @@ export default function Contact() {
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          subject: `Portfolio Contact Form: Message from ${formData.name}`
+          subject: `Portfolio Contact Form: Message from ${formData.name}`,
+          botcheck: ""
         })
       });
 
@@ -70,8 +79,9 @@ export default function Contact() {
       if (result.success) {
         setIsSuccess(true);
         setFormData({ name: '', email: '', message: '' });
-        // Auto close success alert after 5 seconds
-        setTimeout(() => setIsSuccess(false), 5000);
+        if (onSuccess) {
+          onSuccess();
+        }
       } else {
         setErrors({
           form: result.message || "Failed to send message. Please try again."
@@ -123,22 +133,28 @@ export default function Contact() {
             </div>
 
             {/* Direct Mail Details */}
-            <div className="flex items-center space-x-4 p-4 rounded-xl border border-white/5 bg-bg-dark/40 w-fit">
-              <div className="p-2.5 rounded-lg bg-accent-purple/10 text-accent-purple">
-                <Mail className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-xs text-text-gray font-mono">DIRECT EMAIL</p>
-                <a href={`mailto:${portfolioData.contact.email}`} className="text-sm md:text-base text-white hover:text-accent-purple font-semibold transition-colors">
-                  {portfolioData.contact.email}
-                </a>
+            <div 
+              onMouseMove={handleMouseMove}
+              className="flex items-center space-x-4 p-4 rounded-xl border border-white/5 bg-bg-dark/40 w-fit spotlight-card"
+            >
+              <div className="spotlight-card-bg" />
+              <div className="relative z-10 flex items-center space-x-4">
+                <div className="p-2.5 rounded-lg bg-accent-purple/10 text-accent-purple">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-xs text-text-gray font-mono">DIRECT EMAIL</p>
+                  <a href={`mailto:${portfolioData.contact.email}`} className="text-sm md:text-base text-white hover:text-accent-purple font-semibold transition-colors">
+                    {portfolioData.contact.email}
+                  </a>
+                </div>
               </div>
             </div>
 
             {/* Social Buttons List */}
             <div className="space-y-4">
               <h4 className="text-sm font-bold text-white uppercase tracking-wider font-mono">Find Me On</h4>
-              <div className="flex items-center space-x-4">
+              <div className="flex flex-wrap items-center gap-3">
                 <a
                   href={portfolioData.contact.githubUrl}
                   target="_blank"
@@ -158,13 +174,39 @@ export default function Contact() {
                   <Linkedin className="w-4 h-4" />
                   <span>LinkedIn</span>
                 </a>
+
+                <a
+                  href={portfolioData.contact.instagramUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center space-x-2 px-4 py-2.5 rounded-xl border border-white/5 bg-bg-dark/50 hover:bg-white/5 text-sm font-medium text-text-gray hover:text-white transition-all duration-300"
+                >
+                  <Instagram className="w-4 h-4" />
+                  <span>Instagram</span>
+                </a>
+
+                <a
+                  href={portfolioData.contact.twitterUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center space-x-2 px-4 py-2.5 rounded-xl border border-white/5 bg-bg-dark/50 hover:bg-white/5 text-sm font-medium text-text-gray hover:text-white transition-all duration-300"
+                >
+                  <Twitter className="w-4 h-4" />
+                  <span>Twitter</span>
+                </a>
               </div>
             </div>
           </div>
 
           {/* Form Column */}
           <div className="lg:col-span-7 w-full">
-            <form onSubmit={handleSubmit} className="glass-panel p-6 md:p-8 rounded-2xl border border-white/5 bg-bg-dark/40 space-y-6 relative">
+            <form 
+              onSubmit={handleSubmit} 
+              onMouseMove={handleMouseMove}
+              className="glass-panel spotlight-card p-6 md:p-8 rounded-2xl border border-white/5 bg-bg-dark/40 relative overflow-hidden"
+            >
+              <div className="spotlight-card-bg" />
+              <div className="relative z-10 space-y-6">
               
               {/* Success Notification Alert */}
               <AnimatePresence>
@@ -274,11 +316,11 @@ export default function Contact() {
                 whileTap={{ scale: 0.99 }}
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center space-x-2 py-3 rounded-xl bg-gradient-to-r from-accent-blue to-accent-purple text-white font-semibold text-sm hover:opacity-95 disabled:opacity-50 shadow-lg shadow-accent-purple/20 transition-all duration-300"
+                className="w-full flex items-center justify-center space-x-2 py-3 rounded-xl bg-accent-blue text-bg-black hover:bg-accent-blue/90 font-bold text-sm disabled:opacity-50 shadow-lg shadow-accent-blue/20 transition-all duration-300"
               >
                 {isSubmitting ? (
                   <>
-                    <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin h-5 w-5 text-bg-black" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
@@ -286,11 +328,12 @@ export default function Contact() {
                   </>
                 ) : (
                   <>
-                    <Send className="w-4 h-4" />
+                    <Send className="w-4 h-4 text-bg-black" />
                     <span>Send Message</span>
                   </>
                 )}
               </motion.button>
+              </div>
             </form>
           </div>
         </div>

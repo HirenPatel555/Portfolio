@@ -1,137 +1,153 @@
 export const portfolioData = {
   developerName: "Hiren Patel",
   logoText: "Hiren Patel",
-  roles: ["Developer", "Problem Solver", "Backend Developer", "Full Stack Learner"],
+  roles: ["Data Analyst", "Data Cleaning Specialist", "Power BI Developer", "Insight Builder"],
   
   hero: {
     greeting: "Hi, I'm Hiren 👋",
-    headline: "Building clean, scalable digital experiences with code.",
-    subtitle: "I'm a passionate developer focused on creating modern web applications, solving problems, and turning ideas into real products.",
+    headline: "Transforming complex data into clear, actionable business insights.",
+    subtitle: "I am a Data Analyst specializing in SQL, Python, Excel, and Power BI. I focus on cleaning raw data, uncovering patterns, and building interactive dashboards that drive decision-making.",
     resumeUrl: "#", // Placeholder for actual resume download
-    githubUrl: "https://github.com",
-    linkedinUrl: "https://linkedin.com"
+    githubUrl: "https://github.com/HirenPatel555",
+    linkedinUrl: "https://www.linkedin.com/in/hirenpatel555/",
+    instagramUrl: "https://www.instagram.com/hirenpatel.555/",
+    twitterUrl: "https://x.com/PatelHiren555"
   },
 
   about: {
     title: "About Me",
-    role: "Full Stack Developer & Technical Builder",
-    description: "I'm a developer who loves building robust backend logic, clean user interfaces, and everything in between. My journey started with a curiosity about how websites and systems work behind the scenes. Over the months, I've trained myself in modern frontend designs and enterprise-level backend environments.",
-    education: "B.S. in Computer Science & Engineering",
-    passion: "I have a deep passion for writing clean code, database optimization, and learning modern technologies. I constantly seek challenges that push my boundaries and make me a better developer.",
+    role: "Data Analyst & Insights Builder",
+    description: "I'm a Data Analyst with a solid background in Information Technology. I specialize in bridging the gap between raw, unstructured databases and strategic business decisions. With hands-on experience in SQL database queries, data cleaning with Python, and dashboard design using Power BI and Excel, I focus on presenting clean, accurate data in intuitive visual formats that speak directly to stakeholders.",
+    education: [
+      {
+        degree: "Bachelor's degree, Information Technology",
+        school: "Noble University, Junagadh",
+        duration: "Jun 2023 - Mar 2026",
+        skills: "SQL, PHP, phpMyAdmin, MySQL, Front-End (HTML5, CSS3, JavaScript)"
+      },
+      {
+        degree: "Diploma of Education, Ornamental Horticulture",
+        school: "Junagadh Agricultural University (JAU)",
+        duration: "Jun 2019 - Mar 2022"
+      }
+    ],
+    passion: "I have a deep passion for writing clean SQL queries, performing exploratory data analysis (EDA), and crafting high-impact dashboards. I love finding hidden patterns in data to help solve business bottlenecks.",
     stats: [
-      { id: 1, value: "7+", label: "Months Experience" },
-      { id: 2, value: "10+", label: "Projects Completed" },
-      { id: 3, value: "15+", label: "Technologies Learned" }
+      { id: 1, value: "5+", label: "Months Data Experience" },
+      { id: 2, value: "5+", label: "Analytical Projects" },
+      { id: 3, value: "10+", label: "Tools & Tech Mastered" }
     ]
   },
 
   skills: [
     {
-      category: "Frontend",
+      category: "Core Analyst Tools",
       items: [
-        { name: "HTML", iconName: "Html5" },
-        { name: "CSS", iconName: "Css3" },
-        { name: "JavaScript", iconName: "Javascript" },
-        { name: "Bootstrap", iconName: "Bootstrap" },
-        { name: "React", iconName: "React" }
+        { name: "SQL", iconName: "sql" },
+        { name: "Python", iconName: "python" },
+        { name: "Excel", iconName: "excel" },
+        { name: "Power BI", iconName: "power bi" }
       ]
     },
     {
-      category: "Backend",
+      category: "Analytical Skills",
       items: [
-        { name: "PHP", iconName: "Php" },
-        { name: "Laravel", iconName: "Laravel" },
-        { name: "Node.js", iconName: "Node" }
+        { name: "Data Cleaning", iconName: "data cleaning" },
+        { name: "Data Visualization", iconName: "data visualization" },
+        { name: "Business Insights", iconName: "business insights" }
       ]
     },
     {
-      category: "Database",
+      category: "Databases & Web",
       items: [
-        { name: "MySQL", iconName: "Database" },
-        { name: "SQL", iconName: "Server" }
+        { name: "MySQL", iconName: "mysql" },
+        { name: "PHP", iconName: "php" },
+        { name: "Laravel", iconName: "laravel" }
       ]
     },
     {
       category: "Tools & Workflow",
       items: [
-        { name: "Git", iconName: "GitBranch" },
-        { name: "GitHub", iconName: "Github" },
-        { name: "VS Code", iconName: "Code" }
+        { name: "Git", iconName: "git" },
+        { name: "GitHub", iconName: "github" },
+        { name: "VS Code", iconName: "vs code" }
       ]
     }
   ],
 
   experiences: [
     {
-      position: "Junior Backend Developer Intern",
-      company: "ByteCraft Solutions",
-      duration: "Jan 2026 - Present",
+      position: "Product Data & Content Associate",
+      company: "Dolphin Web Solution",
+      duration: "Feb 2026 - Present",
       responsibilities: [
-        "Developed and maintained RESTful APIs using Laravel and PHP for high-traffic applications.",
-        "Optimized MySQL database queries and schemas, reducing server loading latency by 15%.",
-        "Collaborated with frontend developers to integrate React components with PHP controllers."
+        "Manage and publish product data through the admin panel for live end users.",
+        "Upload and optimize product images, descriptions, and specifications.",
+        "Analyze and clean bulk product data catalogs to ensure data integrity and taxonomy accuracy."
       ],
-      technologies: ["PHP", "Laravel", "MySQL", "Git", "Postman"]
+      technologies: ["Excel", "Product Data Management", "Data Quality Control", "Cataloging"]
     },
     {
-      position: "Full Stack Development Trainee",
-      company: "Alpha Code Academy",
-      duration: "Nov 2025 - Jan 2026",
+      position: "Laravel Developer Intern",
+      company: "Memento Technologies",
+      duration: "Jun 2025 - Dec 2025",
       responsibilities: [
-        "Built responsive web layouts using modern frontend tools (React, Bootstrap, Tailwind CSS).",
-        "Gained deep hands-on experience with MVC patterns, secure authentication setups, and deployment.",
-        "Completed 5+ full-stack projects using PHP/MySQL and Node.js backend integrations."
+        "Worked with Laravel Framework and PHP (OOP, MVC) to develop web applications and manage back-end databases.",
+        "Optimized MySQL database queries and schemas to support application features and dashboard reports.",
+        "Collaborated on designing administrative panels to track user activities and system metrics."
       ],
-      technologies: ["HTML5", "CSS3", "JavaScript", "React", "Node.js", "MySQL"]
+      technologies: ["Laravel", "PHP", "MySQL", "Git", "MVC Architecture"]
     }
   ],
 
   projects: [
     {
-      title: "Inventory Management System",
-      description: "A secure, enterprise-grade inventory system with real-time stock notifications, supplier management, analytics reporting, and modern authentication.",
-      imageGradient: "from-blue-600 to-purple-600",
-      techStack: ["PHP", "Laravel", "MySQL", "Bootstrap", "Git"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com"
+      title: "Sales Performance Insights Dashboard",
+      description: "An interactive Power BI dashboard analyzing regional sales, category performance, and profit trends. Built dynamic DAX measures and clean data visualization panels for executive decision-making.",
+      imageGradient: "from-blue-600 to-cyan-500",
+      techStack: ["Power BI", "Excel", "Data Visualization", "DAX"],
+      githubUrl: "https://github.com/HirenPatel555",
+      liveUrl: "#"
     },
     {
-      title: "Task Management App",
-      description: "A collaborative Kanban-style task manager. Features task drag-and-drop, automated reminders, project categories, and granular activity logs.",
+      title: "Customer Segmentation & Analytics",
+      description: "A Python project analyzing retail customer purchasing behavior. Cleaned data with Pandas, performed exploratory analysis, and applied K-Means clustering to identify target customer personas.",
       imageGradient: "from-purple-600 to-pink-600",
-      techStack: ["React", "Tailwind CSS", "Node.js", "MySQL", "Framer Motion"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com"
+      techStack: ["Python", "Pandas", "Scikit-Learn", "Matplotlib", "Seaborn"],
+      githubUrl: "https://github.com/HirenPatel555",
+      liveUrl: "#"
     },
     {
-      title: "E-Commerce Core Service",
-      description: "A backend service featuring dynamic pricing, cart caching, secure order generation, database schema scaling, and payment gateway integration.",
-      imageGradient: "from-cyan-500 to-blue-600",
-      techStack: ["Laravel", "PHP", "MySQL", "Redis", "Docker"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com"
+      title: "SQL Database Optimization & Reporting",
+      description: "Designed logical schemas and wrote optimized aggregate queries, views, and CTEs to clean and structure transaction logs, improving report generation speeds by 35%.",
+      imageGradient: "from-emerald-500 to-teal-600",
+      techStack: ["SQL", "MySQL", "Database Optimization", "Analytical Reports"],
+      githubUrl: "https://github.com/HirenPatel555",
+      liveUrl: "#"
     }
   ],
 
   whyWorkWithMe: [
     {
-      title: "Clean Code",
-      description: "Writing maintainable and scalable solutions with a strong focus on modular design patterns, readability, and performance standards."
+      title: "Data Integrity",
+      description: "A strong emphasis on meticulous data cleaning and preprocessing to ensure all charts, metrics, and dashboards are built on an accurate foundation."
     },
     {
-      title: "Problem Solving",
-      description: "Finding efficient solutions for real-world problems. Approaching complex architectural bottlenecks with structured logic and testing."
+      title: "Business-Driven Focus",
+      description: "I look beyond the numbers to uncover actionable patterns, explaining not just 'what' the data shows but 'why' it matters and how to act on it."
     },
     {
-      title: "Continuous Learning",
-      description: "Always improving with modern technologies. Eagerly adapting to new stacks, industry methodologies, and system design improvements."
+      title: "Technical Foundation",
+      description: "My IT education and Laravel/backend developer experience allow me to query databases directly and collaborate smoothly with developers."
     }
   ],
 
   contact: {
-    heading: "Let's build something amazing together.",
+    heading: "Let's work together to unlock the value in your data.",
     email: "hppateltech@gmail.com",
     githubUrl: "https://github.com/HirenPatel555",
-    linkedinUrl: "https://www.linkedin.com/in/hirenpatel555/"
+    linkedinUrl: "https://www.linkedin.com/in/hirenpatel555/",
+    instagramUrl: "https://www.instagram.com/hirenpatel.555/",
+    twitterUrl: "https://x.com/PatelHiren555"
   }
 };

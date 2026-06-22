@@ -4,6 +4,14 @@ import { GithubIcon as Github } from './BrandIcons';
 import { portfolioData } from '../data/portfolioData';
 
 export default function Projects() {
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
+    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -51,8 +59,10 @@ export default function Projects() {
               key={project.title}
               variants={cardVariants}
               whileHover={{ y: -8 }}
-              className="glass-panel rounded-2xl overflow-hidden border border-white/5 bg-bg-dark/40 flex flex-col h-full card-glow-hover group"
+              onMouseMove={handleMouseMove}
+              className="glass-panel spotlight-card rounded-2xl overflow-hidden border border-white/5 bg-bg-dark/40 flex flex-col h-full group"
             >
+              <div className="spotlight-card-bg" />
               {/* Project Preview Layout */}
               <div className={`h-48 bg-gradient-to-br ${project.imageGradient} p-6 relative overflow-hidden flex items-center justify-center`}>
                 {/* Background grid representation */}
@@ -82,7 +92,7 @@ export default function Projects() {
               </div>
 
               {/* Card Details */}
-              <div className="p-6 flex flex-col flex-grow justify-between">
+              <div className="p-6 flex flex-col flex-grow justify-between relative z-10">
                 <div>
                   <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent-purple transition-colors duration-200">
                     {project.title}
