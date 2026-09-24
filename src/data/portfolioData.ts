@@ -87,7 +87,7 @@ export const portfolioData: PortfolioData = {
     emailPlaceholder: "h.p.patel.tech@gmail.com",
     linkedInPlaceholder: "https://www.linkedin.com/in/hirenpatel555/",
     gitHubPlaceholder: "https://github.com/HirenPatel555",
-    resumePath: "/resume/Hiren-Patel-Resume.pdf", // EDIT YOUR RESUME PATH HERE
+    resumePath: "/resume/Hiren Patoliya DA (cv).pdf", // EDIT YOUR RESUME PATH HERE
 
     bioParagraphs: [
       "I am an analytics professional pursuing an MBA in Business Analytics with a Bachelor's degree in Information Technology. My background combines technical systems understanding—such as relational database schemas, backend APIs, and SQL query structure—with business-focused analytical thinking.",
